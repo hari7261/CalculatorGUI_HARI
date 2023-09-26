@@ -1,1 +1,85 @@
-C
+This Java code defines a simple calculator graphical user interface (GUI) using the Swing library. The calculator allows users to perform basic arithmetic operations like addition, subtraction, multiplication, and division. Here's a detailed explanation of the code:
+
+1. **Import Statements**:
+   ```java
+   import javax.swing.*;
+   import java.awt.*;
+   import java.awt.event.ActionEvent;
+   import java.awt.event.ActionListener;
+   ```
+
+   These are import statements, bringing in necessary classes and packages from the Java Swing library for building the graphical interface and handling user interactions.
+
+2. **CalculatorGUI_HARI Class**:
+   This class represents the main calculator application.
+
+   ```java
+   public class CalculatorGUI_HARI {
+   ```
+
+3. **Instance Variables**:
+   - `private JTextField inputField;`: A text field where users can enter numbers and operators.
+   - `private JLabel resultLabel;`: A label for displaying the result.
+   - `private String currentInput = "";`: A string to keep track of the current input.
+   - `private double currentResult = 0.0;`: A variable to store the current result.
+
+4. **Constructor**:
+   ```java
+   public CalculatorGUI_HARI() {
+   ```
+
+   - Creates a new JFrame (a window) with the title "Calculator" and sets it to exit when closed.
+   - Sets the size of the JFrame to 300 pixels in width and 400 pixels in height.
+   - Creates a JPanel for displaying the "HARIOM" logo and customizes its appearance (font and color).
+   - Creates another JPanel for the calculator's main input and buttons, using a GridLayout of 4 rows and 4 columns.
+   - Creates a JTextField for input and a JLabel for displaying the result.
+   - Defines an array of strings for the calculator buttons (digits, operators, "C" for clear, and "=" for calculation).
+
+5. **Button Creation and Configuration**:
+   - A for-each loop iterates through the button labels and creates JButton objects for each.
+   - These buttons are customized with a specific font and ActionListener, which means they will respond to user clicks.
+
+6. **Layout and Adding Components**:
+   - The logo panel is added to the left (WEST) side of the JFrame.
+   - The input field is added to the top (NORTH).
+   - The result label is added to the center (CENTER).
+   - The button panel is added to the bottom (SOUTH).
+
+7. **ButtonClickListener Inner Class**:
+   ```java
+   private class ButtonClickListener implements ActionListener {
+   ```
+
+   - This inner class implements the ActionListener interface, defining what should happen when a button is clicked.
+
+8. **ActionPerformed Method**:
+   ```java
+   public void actionPerformed(ActionEvent e) {
+   ```
+
+   - This method is called when a button is clicked.
+   - It retrieves the text label of the clicked button using `e.getActionCommand()`.
+
+9. **Handling Button Clicks**:
+   - If the button clicked represents a digit (0-9), it appends the digit to the current input and updates the input field.
+   - If "C" is clicked, it clears the current input, resets the result, and updates the input field and result label.
+   - If "=" is clicked, it attempts to evaluate the current expression, displaying the result or "Error" if there's an issue.
+   - For other operators, it appends the operator to the current input with spaces for better expression parsing.
+
+10. **evaluateExpression Method**:
+    - This private method takes an expression as a string, splits it into parts, and performs arithmetic operations.
+    - It handles addition, subtraction, multiplication, and division, including division by zero and invalid expressions.
+
+11. **Main Method**:
+    ```java
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            new CalculatorGUI_HARI();
+        });
+    }
+    ```
+
+    - The `main` method is the entry point of the application.
+    - It schedules the creation of the calculator GUI by invoking the constructor in the Event Dispatch Thread (EDT) using `SwingUtilities.invokeLater`. This ensures that Swing components are accessed and updated on the EDT, which is the thread responsible for managing the UI.
+
+Overall, this code defines a basic calculator with a GUI that allows users to input expressions and perform simple arithmetic calculations. The calculator's interface includes buttons for digits, operators, clear, and equals, and it displays the current input and result.
